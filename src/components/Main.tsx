@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Loader from './Loader';
 import QustionCards from './QustionCards';
 import { fetchQuiz, Difficulty, QuestionState } from '../API';
+import { GlobalStyle } from '../style/Main.syle'
 
 
 export type QuizSummary = {
@@ -79,22 +80,25 @@ export default function App() {
 
 
   return (
-    <div>
-      <h1>react quiz using type script and styled components</h1>
-      {startBtnDisplay()}
-      {!gameOver && <p className="score">Score: {score}</p>}
-      {loading && <Loader />}
-      {!loading && !gameOver && (
-        <QustionCards
-          qustion={questions[number].question}
-          answers={questions[number].answers}
-          callBack={checkAnswear}
-          userAnswer={userAnswers && userAnswers[number]}
-          qustionNum={number + 1}
-          totalQustions={TOTAL_QUESTIONS}
-        />
-      )}
-      {nextBtnDisplay()}
-    </div>
+    <>
+      <GlobalStyle />
+      <div>
+        <h1>react quiz using type script and styled components</h1>
+        {startBtnDisplay()}
+        {!gameOver && <p className="score">Score: {score}</p>}
+        {loading && <Loader />}
+        {!loading && !gameOver && (
+          <QustionCards
+            qustion={questions[number].question}
+            answers={questions[number].answers}
+            callBack={checkAnswear}
+            userAnswer={userAnswers && userAnswers[number]}
+            qustionNum={number + 1}
+            totalQustions={TOTAL_QUESTIONS}
+          />
+        )}
+        {nextBtnDisplay()}
+      </div>
+    </>
   )
 }
