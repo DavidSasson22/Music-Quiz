@@ -1,11 +1,12 @@
 import React from 'react';
 import Answer from './Answer'
+import { QuizSummary } from './Main';
 
 type Props = {
   qustion: string,
   answers: string[],
-  callBack: any,
-  userAnswer: any,
+  callBack: (e: React.MouseEvent<HTMLButtonElement>) => void,
+  userAnswer: QuizSummary | undefined,
   qustionNum: number,
   totalQustions: number
 }
