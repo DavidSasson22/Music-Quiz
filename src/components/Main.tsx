@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Loader from './Loader';
 import QustionCards from './QustionCards';
 import { fetchQuiz, Difficulty, QuestionState } from '../API';
-import { GlobalStyle } from '../style/Main.syle'
+import { Main } from '../style/Main.style'
 
 
 export type QuizSummary = {
@@ -16,7 +16,7 @@ export type QuizSummary = {
 const TOTAL_QUESTIONS: number = 10;
 
 
-export default function App() {
+export default function MainP() {
 
 
   const [loading, setLoading] = useState(false);
@@ -74,31 +74,29 @@ export default function App() {
     if (!gameOver && !loading && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1) {
       return <button className="next" onClick={getNextQustion}>Next Q</button>
     } else {
-      return null
+      return <button className="next" style={{ visibility: "hidden" }}> Next Q</button >
     }
   }
 
 
   return (
-    <>
-      <GlobalStyle />
-      <div>
-        <h1>react quiz using type script and styled components</h1>
-        {startBtnDisplay()}
-        {!gameOver && <p className="score">Score: {score}</p>}
-        {loading && <Loader />}
-        {!loading && !gameOver && (
-          <QustionCards
-            qustion={questions[number].question}
-            answers={questions[number].answers}
-            callBack={checkAnswear}
-            userAnswer={userAnswers && userAnswers[number]}
-            qustionNum={number + 1}
-            totalQustions={TOTAL_QUESTIONS}
-          />
-        )}
-        {nextBtnDisplay()}
-      </div>
-    </>
+
+    <Main>
+      {startBtnDisplay()}
+      {!gameOver && <p className="score">Score: {score}</p>}
+      {loading && <Loader />}
+      {!loading && !gameOver && (
+        <QustionCards
+          qustion={questions[number].question}
+          answers={questions[number].answers}
+          callBack={checkAnswear}
+          userAnswer={userAnswers && userAnswers[number]}
+          qustionNum={number + 1}
+          totalQustions={TOTAL_QUESTIONS}
+        />
+      )}
+      {nextBtnDisplay()}
+    </Main>
+
   )
 }

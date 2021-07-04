@@ -1,6 +1,7 @@
 import React from 'react';
 import Answer from './Answer'
 import { QuizSummary } from './Main';
+import { Card } from '../style/QustionCard.style'
 
 type Props = {
   qustion: string,
@@ -19,15 +20,19 @@ const QustionCards: React.FC<Props> = (
     qustionNum,
     totalQustions }) => {
   return (
-    <div>
-      <p className="number">
-        Qustion: {qustionNum} / {totalQustions}
-      </p>
-      <p dangerouslySetInnerHTML={{ __html: qustion }} />
-      <div>
-        <Answer answers={answers} userAnswer={userAnswer} callBack={callBack} />
+    <Card>
+      <div className="cardHead">
+        <p className="number">
+          Qustion: {qustionNum} / {totalQustions}
+        </p>
       </div>
-    </div>
+      <div className="question">
+        <p dangerouslySetInnerHTML={{ __html: qustion }} />
+      </div>
+      <ol type="A">
+        <Answer answers={answers} userAnswer={userAnswer} callBack={callBack} />
+      </ol>
+    </Card>
   )
 }
 
