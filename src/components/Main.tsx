@@ -13,11 +13,15 @@ export type QuizSummary = {
 }
 
 
-const TOTAL_QUESTIONS: number = 10;
+type Props = {
+  totalQuestions: number,
+  difficulty: Difficulty,
+  category: number,
+}
 
 
-export default function MainP() {
 
+const MainP: React.FC<Props> = ({ totalQuestions, difficulty, category }) => {
 
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState<QuestionState[]>([]);
@@ -30,7 +34,7 @@ export default function MainP() {
   const startTrivia = async () => {
     setLoading(true);
     setGameOver(false);
-    const newQuiz = await (fetchQuiz(10, Difficulty.EASY));
+    const newQuiz = await (fetchQuiz(totalQuestions, difficulty, category));
     setQuestions(newQuiz);
     setScore(0);
     setUserAnswers([]);
@@ -57,12 +61,12 @@ export default function MainP() {
 
   const getNextQustion = () => {
     const nextQ = number + 1;
-    nextQ === TOTAL_QUESTIONS ? setGameOver(true) : setNumber(nextQ);
+    nextQ === totalQuestions ? setGameOver(true) : setNumber(nextQ);
   };
 
 
   const startBtnDisplay = () => {
-    if (gameOver || userAnswers.length === TOTAL_QUESTIONS) {
+    if (gameOver || userAnswers.length === totalQuestions) {
       return <button className="start" onClick={startTrivia}>Start</button>
     } else {
       return null
@@ -71,7 +75,7 @@ export default function MainP() {
 
 
   const nextBtnDisplay = () => {
-    if (!gameOver && !loading && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1) {
+    if (!gameOver && !loading && userAnswers.length === number + 1 && number !== totalQuestions - 1) {
       return <button className="next" onClick={getNextQustion}>Next Q</button>
     } else {
       return <button className="next" style={{ visibility: "hidden" }}> Next Q</button >
@@ -92,7 +96,7 @@ export default function MainP() {
           callBack={checkAnswear}
           userAnswer={userAnswers && userAnswers[number]}
           qustionNum={number + 1}
-          totalQustions={TOTAL_QUESTIONS}
+          totalQustions={totalQuestions}
         />
       )}
       {nextBtnDisplay()}
@@ -100,3 +104,5 @@ export default function MainP() {
 
   )
 }
+
+export default MainP

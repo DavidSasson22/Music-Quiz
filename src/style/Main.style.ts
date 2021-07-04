@@ -27,4 +27,18 @@ export const Main = styled.div`
     font-size: 2rem;
     line-height: 2;
   }
+  .start {
+    width: 150px;
+    height: 75px;
+    border-radius: 50%;
+    font-size: large;
+    background-color: #293540;
+    border: 0px;
+    box-shadow: 0;
+    color: #a2d2ff;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
