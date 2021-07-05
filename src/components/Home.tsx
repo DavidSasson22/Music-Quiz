@@ -6,21 +6,22 @@ import { Difficulty } from '../API';
 
 
 type Props = {
-  setTotalQuestions: (value: number | ((prevVar: number) => number)) => void,
-  setCategory: (value: number | ((prevVar: number) => number)) => void,
-  setdifficulty: (value: Difficulty | ((prevVar: Difficulty) => Difficulty)) => void,
+  setQuiz: (value: {totalQuestions:number, category:number, difficulty:Difficulty} | ((prevVar: {totalQuestions:number, category:number, difficulty:Difficulty}) => {totalQuestions:number, category:number, difficulty:Difficulty})) => void
 }
 
 let difficulty: Difficulty;
 let category: number;
 let number: number;
 
-const Home: React.FC<Props> = ({ setTotalQuestions, setCategory, setdifficulty }) => {
+const Home: React.FC<Props> = ({ setQuiz}) => {
 
   const submit = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setdifficulty(difficulty ? difficulty : Difficulty.EASY);
-    setCategory(category ? category : 10);
-    setTotalQuestions(number ? number : 10);
+    
+    setQuiz({
+      difficulty: difficulty ? difficulty : Difficulty.EASY,
+      category: category ? category : 10,
+      totalQuestions: number ? number : 10
+    })
   }
 
 
