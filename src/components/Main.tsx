@@ -14,14 +14,16 @@ export type QuizSummary = {
 
 
 type Props = {
+  quiz: {
   totalQuestions: number,
   difficulty: Difficulty,
   category: number,
+  }
 }
 
 
 
-const MainP: React.FC<Props> = ({ totalQuestions, difficulty, category }) => {
+const MainP: React.FC<Props> = ({ quiz }) => {
 
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState<QuestionState[]>([]);
@@ -34,7 +36,7 @@ const MainP: React.FC<Props> = ({ totalQuestions, difficulty, category }) => {
   const startTrivia = async () => {
     setLoading(true);
     setGameOver(false);
-    const newQuiz = await (fetchQuiz(totalQuestions, difficulty, category));
+    const newQuiz = await (fetchQuiz(quiz.totalQuestions, quiz.difficulty, quiz.category));
     setQuestions(newQuiz);
     setScore(0);
     setUserAnswers([]);
@@ -61,12 +63,12 @@ const MainP: React.FC<Props> = ({ totalQuestions, difficulty, category }) => {
 
   const getNextQustion = () => {
     const nextQ = number + 1;
-    nextQ === totalQuestions ? setGameOver(true) : setNumber(nextQ);
+    nextQ === quiz.totalQuestions ? setGameOver(true) : setNumber(nextQ);
   };
 
 
   const startBtnDisplay = () => {
-    if (gameOver || userAnswers.length === totalQuestions) {
+    if (gameOver || userAnswers.length === quiz.totalQuestions) {
       return <button className="start" onClick={startTrivia}>Start</button>
     } else {
       return null
@@ -75,7 +77,7 @@ const MainP: React.FC<Props> = ({ totalQuestions, difficulty, category }) => {
 
 
   const nextBtnDisplay = () => {
-    if (!gameOver && !loading && userAnswers.length === number + 1 && number !== totalQuestions - 1) {
+    if (!gameOver && !loading && userAnswers.length === number + 1 && number !== quiz.totalQuestions - 1) {
       return <button className="next" onClick={getNextQustion}>Next Q</button>
     } else {
       return <button className="next" style={{ visibility: "hidden" }}> Next Q</button >
@@ -96,7 +98,7 @@ const MainP: React.FC<Props> = ({ totalQuestions, difficulty, category }) => {
           callBack={checkAnswear}
           userAnswer={userAnswers && userAnswers[number]}
           qustionNum={number + 1}
-          totalQustions={totalQuestions}
+          totalQustions={quiz.totalQuestions}
         />
       )}
       {nextBtnDisplay()}
