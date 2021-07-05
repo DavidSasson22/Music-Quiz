@@ -17,8 +17,7 @@ export const GlobalStyle = createGlobalStyle`
 
 export const Main = styled.div`
   width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,18 +26,21 @@ export const Main = styled.div`
     font-size: 2rem;
     line-height: 2;
   }
-  .start {
-    width: 150px;
-    height: 75px;
-    border-radius: 50%;
+  .start, .next {
+    width: 200px;
+    height: 60px;
+    border-radius: 60px;
     font-size: large;
     background-color: #293540;
     border: 0px;
     box-shadow: 0;
-    color: #a2d2ff;
+    color: white;
 
     &:hover {
       cursor: pointer;
     }
+  }
+  .next {
+    margin: 16px;
   }
 `;
