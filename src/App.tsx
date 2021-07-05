@@ -14,7 +14,7 @@ const App = () => {
 
   const [quiz, setQuiz] = useState(
     {totalQuestions : 0,
-    category: 0,
+    category: 10,
     difficulty: Difficulty.EASY});
 
   return (
