@@ -37,7 +37,6 @@ const Home: React.FC<Props> = ({ setQuiz}) => {
         difficulty = Difficulty.HARD;
         break;
     }
-    difficulty = Difficulty.EASY;
   }
 
 
