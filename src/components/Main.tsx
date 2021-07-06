@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import Loader from './Loader';
 import QustionCards from './QustionCards';
 import { fetchQuiz, Difficulty, QuestionState } from '../API';
-import { Main } from '../style/Main.style'
-import booksBack from '../assets/img/books.jpg'
+import { Main } from '../style/Main.style';
+import booksBack from '../assets/img/books.jpg';
+import filmBack from '../assets/img/film.jpg';
+import musicBack from '../assets/img/music.jpg';
+import historyBack from '../assets/img/history.jpg';
 
 export type QuizSummary = {
   question: string,
@@ -70,23 +73,33 @@ const MainP: React.FC<Props> = ({ quiz }) => {
   const startBtnDisplay = () => {
     if (gameOver) {
       let title;
+      let bg;
       switch(quiz.category) {
         case 10: 
           title = "Books";
+          bg = booksBack;
           break;
         case 11 :
           title = "Film";
+          bg = filmBack;
           break;
         case 12 :
           title = "Music";
+          bg = musicBack;
           break;
         case 23:
           title = "History";
+          bg = historyBack;
           break
       }
 
       let myStyle = {
-        background: `url(${booksBack})center center/cover`, width:"100%", height:"100vh", display: "flex", justifyContent: "center", alignItems: "center"
+        background: `url(${bg})center center/cover`,
+        width:"100%",
+        height:"100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       }
       return (<div style={myStyle}>
         <button className="start" onClick={startTrivia}>Start {title} quiz</button>
