@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Loader from './Loader';
 import QustionCards from './QustionCards';
 import { fetchQuiz, Difficulty, QuestionState } from '../API';
 import { Main } from '../style/Main.style'
-
+import booksBack from '../assets/img/books.jpg'
 
 export type QuizSummary = {
   question: string,
@@ -20,7 +20,6 @@ type Props = {
   category: number,
   }
 }
-
 
 
 const MainP: React.FC<Props> = ({ quiz }) => {
@@ -69,8 +68,29 @@ const MainP: React.FC<Props> = ({ quiz }) => {
 
 
   const startBtnDisplay = () => {
-    if (loading) {
-      return null
+    if (gameOver) {
+      let title;
+      switch(quiz.category) {
+        case 10: 
+          title = "Books";
+          break;
+        case 11 :
+          title = "Film";
+          break;
+        case 12 :
+          title = "Music";
+          break;
+        case 23:
+          title = "History";
+          break
+      }
+
+      let myStyle = {
+        background: `url(${booksBack})center center/cover`, width:"100%", height:"100vh", display: "flex", justifyContent: "center", alignItems: "center"
+      }
+      return (<div style={myStyle}>
+        <button className="start" onClick={startTrivia}>Start {title} quiz</button>
+        </div>)
     }
     else if (gameOver || userAnswers.length === quiz.totalQuestions) {
       return <button className="start" onClick={startTrivia}>Restart</button>
@@ -88,12 +108,9 @@ const MainP: React.FC<Props> = ({ quiz }) => {
     }
   }
 
-  useEffect ( ()=> {
-    startTrivia()
-  }, [])
+
 
   return (
-
     <Main>
       {!gameOver && <p className="score">Score: {score}</p>}
       {loading && <Loader />}
