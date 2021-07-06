@@ -6,7 +6,15 @@ import { Difficulty } from '../API';
 
 
 type Props = {
-  setQuiz: (value: {totalQuestions:number, category:number, difficulty:Difficulty} | ((prevVar: {totalQuestions:number, category:number, difficulty:Difficulty}) => {totalQuestions:number, category:number, difficulty:Difficulty})) => void
+  setQuiz: (
+    value: {
+      totalQuestions:number, category:number, difficulty:Difficulty
+    } | ((
+      prevVar: {
+        totalQuestions:number, category:number, difficulty:Difficulty
+      }) => {
+        totalQuestions:number, category:number, difficulty:Difficulty
+      })) => void
 }
 
 let difficulty: Difficulty;
