@@ -22,19 +22,21 @@ export const Main = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: #293540;
   > .score {
     font-size: 2rem;
     line-height: 2;
+    color: white;
   }
   .start, .next {
     width: 200px;
     height: 60px;
     border-radius: 60px;
     font-size: large;
-    background-color: #293540;
+    background-color: white;
     border: 0px;
     box-shadow: 0;
-    color: white;
+    color: #293540;
     margin: 16px;
 
     &:hover {
