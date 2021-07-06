@@ -16,7 +16,6 @@ let number: number;
 const Home: React.FC<Props> = ({ setQuiz}) => {
 
   const submit = (e: React.MouseEvent<HTMLButtonElement>) => {
-    
     setQuiz({
       difficulty: difficulty ? difficulty : Difficulty.EASY,
       category: category ? category : 10,
