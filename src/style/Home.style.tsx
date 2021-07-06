@@ -21,10 +21,12 @@ export const HomePage = styled.div`
     padding: 16px;
     margin-bottom: 32px;
     max-width: 84vw;
+    background-color: rgb(226,231,235, 0.75);
+    border-radius: 30px;
   }
 
   > form {
-    background-color: rgb(226,231,235);
+    background-color: rgb(226,231,235, 0.75);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
