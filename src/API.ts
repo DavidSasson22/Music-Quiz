@@ -24,14 +24,16 @@ export const fetchQuiz = async (
 ) => {
   const endPoint: string = `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=multiple`;
   try {
-    const data = await await axios.get(endPoint);
-    return data.data.results.map((qstn: Question) => {
+    const { data } = await axios.get(endPoint);
+    return data.results.map((question: Question) => {
+      const answers = shuffleArray([...question.incorrect_answers, question.correct_answer])
+
       return {
-        ...qstn,
-        answers: shuffleArray([...qstn.incorrect_answers, qstn.correct_answer]),
-      };
+        ...question,
+        answers,
+      }
     });
-  } catch (e) {
+    } catch (e) {
     alert(e);
   }
 };
