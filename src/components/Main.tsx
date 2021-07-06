@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
 import Loader from './Loader';
 import QustionCards from './QustionCards';
 import { fetchQuiz, Difficulty, QuestionState } from '../API';
@@ -18,9 +19,9 @@ export type QuizSummary = {
 
 type Props = {
   quiz: {
-  totalQuestions: number,
-  difficulty: Difficulty,
-  category: number,
+    totalQuestions: number,
+    difficulty: Difficulty,
+    category: number,
   }
 }
 
@@ -52,7 +53,7 @@ const MainP: React.FC<Props> = ({ quiz }) => {
     if (!gameOver) {
       const answer = e.currentTarget.value;
       const correct = questions[number].correct_answer === answer;
-      correct && setScore(prev => prev + (Math.round(1/quiz.totalQuestions * 100)));
+      correct && setScore(prev => prev + (Math.round(1 / quiz.totalQuestions * 100)));
       const ansObj = {
         question: questions[number].question,
         answer,
@@ -74,16 +75,16 @@ const MainP: React.FC<Props> = ({ quiz }) => {
     if (gameOver) {
       let title;
       let bg;
-      switch(quiz.category) {
-        case 10: 
+      switch (quiz.category) {
+        case 10:
           title = "Books";
           bg = booksBack;
           break;
-        case 11 :
+        case 11:
           title = "Film";
           bg = filmBack;
           break;
-        case 12 :
+        case 12:
           title = "Music";
           bg = musicBack;
           break;
@@ -95,18 +96,23 @@ const MainP: React.FC<Props> = ({ quiz }) => {
 
       let myStyle = {
         background: `url(${bg})center center/cover`,
-        width:"100%",
-        height:"100vh",
+        width: "100%",
+        height: "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
       }
       return (<div style={myStyle}>
         <button className="start" onClick={startTrivia}>Start {title} quiz</button>
-        </div>)
+      </div>)
     }
     else if (gameOver || userAnswers.length === quiz.totalQuestions) {
-      return <button className="start" onClick={startTrivia}>Restart</button>
+      return (
+        <div style={{ display: "flex" }}>
+          <button className="start" onClick={startTrivia}>Restart</button>
+          <Link to="/"><button className="start">Go Back</button></Link>
+        </div>
+      )
     } else {
       return null
     };
@@ -137,7 +143,7 @@ const MainP: React.FC<Props> = ({ quiz }) => {
           totalQustions={quiz.totalQuestions}
         />
       )}
-      {startBtnDisplay()}
+      {!loading && startBtnDisplay()}
       {nextBtnDisplay()}
     </Main>
 
