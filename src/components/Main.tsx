@@ -52,7 +52,7 @@ const MainP: React.FC<Props> = ({ quiz }) => {
     if (!gameOver) {
       const answer = e.currentTarget.value;
       const correct = questions[number].correct_answer === answer;
-      correct && setScore(prev => prev + (1/quiz.totalQuestions * 100));
+      correct && setScore(prev => prev + (Math.round(1/quiz.totalQuestions * 100)));
       const ansObj = {
         question: questions[number].question,
         answer,
