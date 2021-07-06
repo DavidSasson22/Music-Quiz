@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Loader from './Loader';
 import QustionCards from './QustionCards';
 import { fetchQuiz, Difficulty, QuestionState } from '../API';
@@ -36,6 +36,7 @@ const MainP: React.FC<Props> = ({ quiz }) => {
   const startTrivia = async () => {
     setLoading(true);
     setGameOver(false);
+    console.log(quiz.category);
     const newQuiz = await (fetchQuiz(quiz.totalQuestions, quiz.difficulty, quiz.category));
     setQuestions(newQuiz);
     setScore(0);
@@ -49,7 +50,7 @@ const MainP: React.FC<Props> = ({ quiz }) => {
     if (!gameOver) {
       const answer = e.currentTarget.value;
       const correct = questions[number].correct_answer === answer;
-      correct && setScore(prev => prev + 1);
+      correct && setScore(prev => prev + (1/quiz.totalQuestions * 100));
       const ansObj = {
         question: questions[number].question,
         answer,
@@ -68,8 +69,11 @@ const MainP: React.FC<Props> = ({ quiz }) => {
 
 
   const startBtnDisplay = () => {
-    if (gameOver || userAnswers.length === quiz.totalQuestions) {
-      return <button className="start" onClick={startTrivia}>Start</button>
+    if (loading) {
+      return null
+    }
+    else if (gameOver || userAnswers.length === quiz.totalQuestions) {
+      return <button className="start" onClick={startTrivia}>Restart</button>
     } else {
       return null
     };
@@ -84,11 +88,13 @@ const MainP: React.FC<Props> = ({ quiz }) => {
     }
   }
 
+  useEffect ( ()=> {
+    startTrivia()
+  }, [])
 
   return (
 
     <Main>
-      {startBtnDisplay()}
       {!gameOver && <p className="score">Score: {score}</p>}
       {loading && <Loader />}
       {!loading && !gameOver && (
@@ -101,6 +107,7 @@ const MainP: React.FC<Props> = ({ quiz }) => {
           totalQustions={quiz.totalQuestions}
         />
       )}
+      {startBtnDisplay()}
       {nextBtnDisplay()}
     </Main>
 
