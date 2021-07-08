@@ -1,4 +1,4 @@
-# Mט Trivia App
+# My Trivia App
 
 Choose category, difficulty and number of questions, and test your knowledge.
 
