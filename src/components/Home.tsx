@@ -75,7 +75,7 @@ const Home: React.FC<Props> = ({ setQuiz }) => {
           </div>
           <div className="field">
             <label htmlFor="questionsN">Choose Number of Questions (max 50):</label>
-            <input type="number" defaultValue="10" id="questionsN" name="questionsN" min="10" max="50" onChange={(e) => number = Number(e.target.value)} required />
+            <input type="number" defaultValue="10" id="questionsN" name="questionsN" min="1" max="50" onChange={(e) => number = Number(e.target.value)} required />
           </div>
           <div>
             <Link to="/play">
