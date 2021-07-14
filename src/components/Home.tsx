@@ -8,12 +8,12 @@ import { Difficulty } from '../API';
 type Props = {
   setQuiz: (
     value: {
-      totalQuestions:number, category:number, difficulty:Difficulty
+      totalQuestions: number, category: number, difficulty: Difficulty
     } | ((
       prevVar: {
-        totalQuestions:number, category:number, difficulty:Difficulty
+        totalQuestions: number, category: number, difficulty: Difficulty
       }) => {
-        totalQuestions:number, category:number, difficulty:Difficulty
+        totalQuestions: number, category: number, difficulty: Difficulty
       })) => void
 }
 
@@ -21,7 +21,7 @@ let difficulty: Difficulty;
 let category: number;
 let number: number;
 
-const Home: React.FC<Props> = ({ setQuiz}) => {
+const Home: React.FC<Props> = ({ setQuiz }) => {
 
   const submit = (e: React.MouseEvent<HTMLButtonElement>) => {
     setQuiz({
@@ -57,7 +57,7 @@ const Home: React.FC<Props> = ({ setQuiz}) => {
         <form onSubmit={(e) => { e.preventDefault() }}>
           <div className="field">
             <label htmlFor="category">Choose Category:</label>
-            <select id="category" name="category" onChange={(e) => category = Number(e.target.value)} required>
+            <select id="category" name="category" defaultValue="10" onChange={(e) => category = Number(e.target.value)} required>
               <option value="10">Books</option>
               <option value="11">Film</option>
               <option value="12">Music</option>
@@ -67,7 +67,7 @@ const Home: React.FC<Props> = ({ setQuiz}) => {
           <hr />
           <div className="field">
             <label htmlFor="difficulty">Choose Difficulty:</label>
-            <select id="difficulty" name="difficulty" value={this}
+            <select id="difficulty" name="difficulty" defaultValue={Difficulty.EASY}
               onChange={(e) => difficultyHandler(e.target.value)} required>
               <option value={Difficulty.EASY}>Easy</option>
               <option value={Difficulty.MEDIUM}>Medium</option>
@@ -77,7 +77,7 @@ const Home: React.FC<Props> = ({ setQuiz}) => {
           <hr />
           <div className="field">
             <label htmlFor="questionsN">Choose Number of Questions (max 50):</label>
-            <input type="number" id="questionsN" name="questionsN" min="10" max="50" onChange={(e) => number = Number(e.target.value)} required />
+            <input type="number" defaultValue="10" id="questionsN" name="questionsN" min="10" max="50" onChange={(e) => number = Number(e.target.value)} required />
           </div>
           <hr />
           <Link to="/play">

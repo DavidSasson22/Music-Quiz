@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Loader from './Loader';
 import QustionCards from './QustionCards';
 import { fetchQuiz, Difficulty, QuestionState } from '../API';
-import { Main } from '../style/Main.style';
+import { Main, BtnFlex } from '../style/Main.style';
 import booksBack from '../assets/img/books.jpg';
 import filmBack from '../assets/img/film.jpg';
 import musicBack from '../assets/img/music.jpg';
@@ -102,16 +102,18 @@ const MainP: React.FC<Props> = ({ quiz }) => {
         justifyContent: "center",
         alignItems: "center",
       }
+
+
       return (<div style={myStyle}>
         <button className="start" onClick={startTrivia}>Start {title} quiz</button>
       </div>)
     }
     else if (gameOver || userAnswers.length === quiz.totalQuestions) {
       return (
-        <div style={{ display: "flex" }}>
+        <BtnFlex>
           <button className="start" onClick={startTrivia}>Restart</button>
           <Link to="/"><button className="start">Go Back</button></Link>
-        </div>
+        </BtnFlex>
       )
     } else {
       return null

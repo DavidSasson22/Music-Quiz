@@ -5,7 +5,7 @@ export const Card = styled.div`
   background-color: #bee1e6;
   user-select: none;
   width: 350px;
-  min-height:500px;
+  height:700px;
   border-radius: 40px;
   padding: 8px 16px 24px 16px;
   > .cardHead {
@@ -15,6 +15,7 @@ export const Card = styled.div`
   }
   > .question {
     background-color: #e2ece9;
+    height: 175px;
     text-align: center;
     padding: 16px;
     font-size: 1.5rem;
@@ -26,7 +27,7 @@ export const Card = styled.div`
   > ol {
     background-color: #e2ece9;
     width: 100%;
-    min-height: 280px;
+    height: 350px;
     padding: 30px 30px;
     display: flex;
     flex-direction: column;

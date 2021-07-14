@@ -28,7 +28,8 @@ export const Main = styled.div`
     line-height: 2;
     color: white;
   }
-  .start, .next {
+  .start,
+  .next {
     width: 200px;
     height: 60px;
     border-radius: 60px;
@@ -37,10 +38,16 @@ export const Main = styled.div`
     border: 0px;
     box-shadow: 0;
     color: #293540;
-    margin: 16px;
+    margin-top: 8px;
 
     &:hover {
       cursor: pointer;
     }
   }
+`;
+
+export const BtnFlex = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
