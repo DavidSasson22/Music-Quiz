@@ -64,7 +64,6 @@ const Home: React.FC<Props> = ({ setQuiz }) => {
               <option value="23">History</option>
             </select>
           </div>
-          <hr />
           <div className="field">
             <label htmlFor="difficulty">Choose Difficulty:</label>
             <select id="difficulty" name="difficulty" defaultValue={Difficulty.EASY}
@@ -74,15 +73,15 @@ const Home: React.FC<Props> = ({ setQuiz }) => {
               <option value={Difficulty.HARD}>Hard</option>
             </select>
           </div>
-          <hr />
           <div className="field">
             <label htmlFor="questionsN">Choose Number of Questions (max 50):</label>
             <input type="number" defaultValue="10" id="questionsN" name="questionsN" min="10" max="50" onChange={(e) => number = Number(e.target.value)} required />
           </div>
-          <hr />
-          <Link to="/play">
-            <button type="submit" onClick={(e) => submit(e)}>Submit</button>
-          </Link>
+          <div>
+            <Link to="/play">
+              <button type="submit" onClick={(e) => submit(e)}>Submit</button>
+            </Link>
+          </div>
         </form>
       </HomePage>
     </>

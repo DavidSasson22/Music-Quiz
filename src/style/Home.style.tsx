@@ -19,6 +19,7 @@ export const HomePage = styled.div`
      background-size: cover;
   > header {
     padding: 16px;
+    margin-top: 8px;
     margin-bottom: 32px;
     max-width: 84vw;
     background-color: rgb(226,231,235, 0.75);
@@ -30,16 +31,19 @@ export const HomePage = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 400px;
-    padding: 16px;
+    height: 500px;
+    padding: 8px;
+    margin: 8px;
+    font-size: 24px;
   }
     .field {
       display: flex;
       flex-direction: column;
-      height: 15%;
+      /* height: 64px; */
       justify-content: space-between;
       > select, input, label {
-        padding: 4px;
+        padding: 8px;
+        font-size: 20px;
       }
     }
     button {
