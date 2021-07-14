@@ -30,7 +30,7 @@ const MainP: React.FC<Props> = ({ quiz }) => {
 
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState<QuestionState[]>([]);
-  const [number, setNumber] = useState(0);
+  const [number, setNumber] = useState(-1);
   const [userAnswers, setUserAnswers] = useState<QuizSummary[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
@@ -146,7 +146,7 @@ const MainP: React.FC<Props> = ({ quiz }) => {
         />
       )}
       {!loading && startBtnDisplay()}
-      {nextBtnDisplay()}
+      {number !== -1 && nextBtnDisplay()}
     </Main>
 
   )
